@@ -3,6 +3,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
+import userRoute from "./routes/user.route.js";
+import companyRoute from "./routes/company.route.js";
 dotenv.config();
 
 const app=express();
@@ -17,6 +19,11 @@ const corsOptions = {
   credentials: true, // Allow cookies to be sent
 };
 app.use(cors(corsOptions));
+
+
+// API ROUTES
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/company", companyRoute);
 
 
 
