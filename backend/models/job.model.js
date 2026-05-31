@@ -32,7 +32,7 @@ const jobschema= new mongoose.Schema({
         ref:"Company",
         required:true
     },   
-    cerated_by:{
+    created_by:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
         required:true
