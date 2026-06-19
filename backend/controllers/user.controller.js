@@ -6,27 +6,28 @@ import jwt from "jsonwebtoken";
 // register controller for user registration  
 export const register=async(req,res)=>{
     try {
-        const {name,email,phonenumber,password,role}=req.body;
-        if(!name || !email || !phonenumber || !password){
-            return res.status(400).json({message:"All fields are required"})
+        const { fullname, email, phonenumber, password, role } = req.body;
+        if(!fullname || !email || !phonenumber || !password){
+            return res.status(400).json({message:"All fields are required",success:false})
         }
 
         const user=await User.findOne({email});
         if(user){
-            return res.status(400).json({message:"User already exists"})
+            return res.status(400).json({message:"User already exists",success:false})
         }
         const salt=await bcrypt.genSalt(10);
         const hashedPassword=await bcrypt.hash(password,salt);
         await User.create({
-            name,
+            fullname,
             email,
             phonenumber,
             password:hashedPassword,
             role
         })
-        return res.status(201).json({message:"User registered successfully"})
+        return res.status(201).json({message:"User registered successfully",success:true})
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({message:"Server error"})
     }
 };
@@ -37,19 +38,19 @@ export const login= async(req,res)=>{
     try{
         const {email,password,role}=req.body;
         if(!email || !password){
-            return res.status(400).json({message:"All fields are required"})
+            return res.status(400).json({message:"All fields are required",success:false})
         }
 
         let user=await User.findOne({email});
         if(!user){
-            return res.status(400).json({message:"Invalid credentials"})
+            return res.status(400).json({message:"Invalid credentials",success:false})
         }
         const isMatch=await bcrypt.compare(password,user.password);
         if(!isMatch){
-            return res.status(400).json({message:"Invalid credentials"})
+            return res.status(400).json({message:"Invalid credentials",success:false})
         }
         if(user.role!==role){
-            return res.status(400).json({message:"Invalid credentials"})
+            return res.status(400).json({message:"Invalid credentials",success:false})
         }
 
         const tokendata={
@@ -58,7 +59,7 @@ export const login= async(req,res)=>{
 
         const userData={
             userId:user._id,
-            name:user.name,
+            fullname:user.fullname,
             email:user.email,
             phonenumber:user.phonenumber,
             role:user.role,
@@ -70,11 +71,11 @@ export const login= async(req,res)=>{
             maxAge:24*60*60*1000,
             sameSite:"strict",
         }
-        return res.status(200).cookie("token",token,cookie).json({message:"Login successful",user:userData});
+        return res.status(200).cookie("token",token,cookie).json({message:`Welcome Back ${user.fullname}`,user:userData,success:true});
         
     }
     catch(error){
-        res.status(500).json({message:"Server error"})
+        res.status(500).json({message:"Server error",success:false})
     }
 };
 
@@ -87,10 +88,10 @@ export const logout=async(req,res)=>{
             maxAge:0,
             sameSite:"strict",
         }
-        return res.status(200).cookie("token","",cookie).json({message:"Logout successful"});
+        return res.status(200).cookie("token","",cookie).json({message:"Logout successful",success:true});
     }
     catch(error){
-        res.status(500).json({message:"Server error"})
+        res.status(500).json({message:"Server error",success:false})
     }
 };
 
