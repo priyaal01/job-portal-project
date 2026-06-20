@@ -1,16 +1,22 @@
 import { Bookmark } from 'lucide-react'
 import React from 'react'
 import { Button } from './ui/button'
+import { Badge } from './ui/badge'
 
 const JobCards = () => {
     return (
-        <div className='flex flex-col justify-between relative p-4 bg-gray-100 shadow-xl h-[380px] w-[340px] rounded-xl'>
-            <div className='bg-green-200 h-[290px] rounded-md'>
+        <div className='flex flex-col justify-between relative p-4 shadow-xl h-[360px] w-[340px] rounded-xl'>
+            <div className='bg-green-100 h-[270px] rounded-md'>
                 <div className='flex item-center justify-between p-2'>
-                    <h1 className='text-lg font-semibold ml-2'>12LPA</h1>
+                    <h1 className='text-md font-semibold ml-2'>2 days ago</h1>
                     <Bookmark strokeWidth={1} className='cursor-pointer'/>
                 </div>
                 <h1 className='text-4xl font-semibold m-5 mt-8 '>Senior UI Developer</h1>
+                 <div className=" ml-2 p-2 flex gap-2">
+                    <Badge variant="ghost" className='border border-black'>12 LPA</Badge>
+                    <Badge variant='ghost' className='border border-black'>Remote</Badge>
+                    <Badge variant='ghost' className='border border-black'>Full-Time</Badge>
+                </div>
 
             </div>
 

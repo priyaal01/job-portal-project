@@ -6,10 +6,11 @@ import { LogOut, Search, User2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import Login from '../auth/Login'
 import SearchDropdown from './SearchDropdown'
+import { useSelector } from 'react-redux'
 
 
 const Navbar = () => {
-    const user = false;
+    const {user}=useSelector(store=>store.auth)
     const [openSearch, setOpenSearch] = useState(false);
 
     return (
@@ -75,7 +76,7 @@ const Navbar = () => {
 
                                             {/* Actions */}
                                             <div className="flex flex-col gap-2">
-                                                <Button variant="outline"><User2 /> View Profile</Button>
+                                                <Link to='/profile'><Button variant="outline" className='w-full'><User2 /> View Profile</Button></Link>
                                                 <Button><LogOut />Log out</Button>
                                             </div>
                                         </div>

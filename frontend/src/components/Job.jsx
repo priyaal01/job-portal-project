@@ -6,17 +6,17 @@ import { Bookmark, ListCollapse, MoveUpRight } from "lucide-react";
 const Job = () => {
 
     return (
-        <div className='flex flex-col justify-between relative p-4  bg-gray-100 shadow-xl h-[360px] w-[340px] rounded-xl'>
-            <div className=' h-[290px] rounded-md'>
+        <div className='flex flex-col justify-between relative p-4  shadow-xl h-[360px] w-[340px] rounded-xl'>
+            <div className=' h-[270px] rounded-md bg-pink-100'>
                 <div className='flex item-center justify-between p-2'>
                     <h1 className='text-sm font-semibold ml-2'>2 days ago</h1>
                     <Bookmark strokeWidth={1} className='cursor-pointer' />
                 </div>
                 <h1 className='text-4xl font-semibold m-5 mt-8 '>Senior UI Developer</h1>
                 <div className=" ml-2 p-2 flex gap-2">
-                    <Badge variant="ghost">12 LPA</Badge>
-                    <Badge variant='ghost'>Remote</Badge>
-                    <Badge variant='ghost'>Full-Time</Badge>
+                    <Badge variant="ghost" className='border border-black'>12 LPA</Badge>
+                    <Badge variant='ghost' className='border border-black'>Remote</Badge>
+                    <Badge variant='ghost' className='border border-black'>Full-Time</Badge>
                 </div>
 
             </div>

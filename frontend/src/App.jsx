@@ -5,6 +5,7 @@ import Browse from './components/Browse';
 import Home from './components/Home';
 import Jobs from './components/Jobs';
 import Notfound from './components/Notfound';
+import Profile from './components/Profile';
 import Navbar from './components/shared/Navbar'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -36,6 +37,11 @@ const appRouter = createBrowserRouter([
   {
     path:'/browse',
     element:<Browse/>
+  },
+
+  {
+    path:'/profile',
+    element:<Profile/>
   }
 
 ]);

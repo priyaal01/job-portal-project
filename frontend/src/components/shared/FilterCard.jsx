@@ -16,6 +16,11 @@ const filterData = [
     {
         filterType: "Salary",
         array: ["0-40k", "40k-90k", "1lakh-2lakh","2lakh-4lakh","5lakh-10lakh"]
+    },
+
+    {
+        filterType:"Job Type",
+        array:["Full-time","Part-time","Remote","Hybrid"]
     }
 ]
 
@@ -23,7 +28,7 @@ const FilterCard = () => {
     return (
         <div className='w-full bg-white p-2 '>
             <h1 className='text-lg font-bold'>Filter Jobs</h1>
-            <hr className='mt-2 mb-2' />
+            <hr className=' mb-1' />
             <RadioGroup defaultValue="comfortable" className="w-fit">
                 {
                     filterData.map((data, index) => (
@@ -32,7 +37,7 @@ const FilterCard = () => {
                             {
                                 data.array.map((item, index) => {
                                     return (
-                                        <div className='flex items-center gap-2 mb-2'>
+                                        <div className='flex items-center gap-2 mb-1'>
                                             <RadioGroupItem value={item} />
                                             <Label>{item}</Label>
                                         </div>

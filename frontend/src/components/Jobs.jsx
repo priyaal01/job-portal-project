@@ -39,13 +39,7 @@ const Jobs = () => {
 
                 </div>
             </div>
-
-
-
-
-
-            {/* <Footer/> */}
-
+            <Footer/>
         </div>
     )
 }
