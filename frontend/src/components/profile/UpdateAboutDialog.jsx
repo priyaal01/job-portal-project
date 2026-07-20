@@ -76,7 +76,7 @@ const UpdateAboutDialog = ({ open, setOpen }) => {
                     <FieldGroup className="mt-4">
                         <Field>
                             <Label htmlFor="about">About</Label>
-                            <textarea id="about" name="about" value={input.about} onChange={changeEventHandler} rows={6} />
+                            <Input id="about" name="about" value={input.about} onChange={changeEventHandler} rows={6} />
                         </Field>
                     </FieldGroup>
                     <DialogFooter className="mt-4">

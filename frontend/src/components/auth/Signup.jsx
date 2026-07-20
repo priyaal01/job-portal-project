@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import axios from 'axios'
 import { USER_API_END_POINT } from '@/utils/constant'
-import { Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoading } from '@/redux/authSlice'
 
@@ -99,7 +99,7 @@ const Signup = () => {
             <button type='button' onClick={() => { setShowPassword(!showPassword) }} className='absolute right-4 top-5 translate-y-1/2'>{showPassword ? <EyeOff strokeWidth={0.75} /> : <Eye strokeWidth={0.75} />}</button>
           </div>
           {
-            loading ? <Button className='mt-3 w-full'><Loader2 className=' mr-2 w-4 h-4 animate-spin' /> Please Wait</Button> : <Button className='mt-3 w-full'>Login</Button>
+            loading ? <Button className='mt-3 w-full'><Loader2 className=' mr-2 w-4 h-4 animate-spin' /> Please Wait</Button> : <Button className='mt-3 w-full'>Register</Button>
           }
           <h4 className='text-sm mt-1 flex justify-center'>Already have an account? <Link to='/login'> <span className='text-green-500 ml-1 font-bold underline underline-offset-1'> login</span></Link></h4>
 
