@@ -8,18 +8,17 @@ const isAuthenticated = async(req,res,next)=>{
             return res.status(401).json({message:"Unauthorized"})
         }
 
-        const decode = jwt.verify(token,process.env.SECRET_KEY);
-        req.id = decode.userId;
-        next();
-
-        if(!decode){
+        const decode = jwt.verify(token, process.env.SECRET_KEY);
+        if(!decode || !decode.userId){
             return res.status(401).json({message:"Unauthorized"})
         }
 
-
+        req.id = decode.userId;
+        next();
     }
     catch(error){
-        res.status(500).json({message:"Server error"})
+        console.log(error);
+        return res.status(401).json({message:"Unauthorized"})
     }
 };
 

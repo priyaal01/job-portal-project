@@ -25,16 +25,22 @@ const userschema= new mongoose.Schema({
         default:"student"
     },
     profile:{
-        bio:{type:String},
+        about:{type:String},
         skills:[{type:String}],
+        location:{type:String, default:""},
+        domain:{type:String, default:""},
         resume:{type:String},
         resumeorignalname:{type:String},
         company:{type:mongoose.Schema.Types.ObjectId, ref:"Company"},
-        profilephoto:{
+        profilePhoto:{
             type:String,
             default:" "
-
         },
+        
+        coverPhoto:{
+            type:String,
+            default:" "
+        }
 
     }
 },{timestamps:true})
