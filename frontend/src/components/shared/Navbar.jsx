@@ -42,7 +42,7 @@ const Navbar = () => {
         <div className="bg-white ">
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16 py-4'>
                 <div>
-                    <Link to={"/"}><h1 className='text-2xl font-bold'>Job<span className='bg-gradient-to-r bg-clip-text text-transparent from-green-500 to-green-600'>Portal</span></h1></Link>
+                    <Link to={"/"}><h1 className='text-2xl font-bold'>We<span className='bg-gradient-to-r bg-clip-text text-transparent from-green-500 to-green-600'>Hire</span></h1></Link>
 
                 </div>
 
@@ -70,7 +70,7 @@ const Navbar = () => {
                                 <Popover>
                                     <PopoverTrigger asChild>
                                         <Avatar className='cursor-pointer'>
-                                            <AvatarImage src={user?.profile?.profilePhoto} alt="shadcn" />
+                                            <AvatarImage src={user?.profile?.profilePhoto} alt="shadcn" className="object-cover" />
                                         </Avatar>
                                     </PopoverTrigger>
                                     <PopoverContent className="w-80">
@@ -78,12 +78,12 @@ const Navbar = () => {
 
                                             {/* User Info */}
                                             <div>
-                                                <h4 className="font-semibold text-lg">Priyaal Gayakwad</h4>
+                                                <h4 className="font-semibold text-lg">{user?.fullname}</h4>
                                                 <p className="text-sm text-muted-foreground">
-                                                    Frontend Developer & Designer
+                                                    {user?.profile?.domain}
                                                 </p>
                                                 <p className="text-sm text-muted-foreground">
-                                                    priyaal@example.com
+                                                    {user?.email}
                                                 </p>
                                             </div>
 

@@ -48,11 +48,11 @@ export const getJobs=async(req,res)=>{
         if(!jobs){
             return res.status(404).json({message:"No job found"})
         }
-        return res.status(200).json({message:"Jobs fetched successfully",jobs})
+        return res.status(200).json({message:"Jobs fetched successfully",jobs,success:true})
     }
     catch(error){
         console.log(error);
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: error.message,success:false});
     }
 }
 
@@ -62,15 +62,18 @@ export const getJobs=async(req,res)=>{
 export const getJobById=async(req,res)=>{
     try{
         const jobId=req.params.id;
-        const job =await Job.findById(jobId);
+        const job =await Job.findById(jobId).populate([
+            { path: "company" },
+            { path: "applications"}
+        ]);
         if(!job){
             return res.status(404).json({message:"No job found"})
         }
-        return res.status(200).json({message:"Job fetched successfully",job})
+        return res.status(200).json({message:"Job fetched successfully",job,success:true})
     }
     catch(error){
         console.log(error);
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: error.message,success:false });
     }
 }
 
