@@ -27,10 +27,10 @@ export const createJob = async (req, res) => {
             created_by: userId
         });
 
-        return res.status(201).json({ message: "Job created successfully", job });
+        return res.status(201).json({ message: "Job created successfully", job,success:true });
     } catch (error) {
         console.error(error);
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: error.message,success:false });
     }
 };
 
@@ -85,10 +85,10 @@ export const jobsCreatedByAdmin = async(req,res)=>{
         if(!jobs){
             return res.status(404).json({message:"No job found"})
         }
-        return res.status(200).json({message:"Jobs fetched successfully",jobs})
+        return res.status(200).json({message:"Jobs fetched successfully",jobs,success:true})
     }
     catch(error){
         console.log(error);
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: error.message ,success:false});
     }
 }

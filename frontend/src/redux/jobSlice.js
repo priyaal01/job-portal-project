@@ -7,11 +7,11 @@ const jobSlice = createSlice({
         singleJob:null,
     },
     reducers: {
-        setAllJobs: (state, actions) => {
-            state.allJobs = actions.payload;
+        setAllJobs: (state, action) => {
+            state.allJobs = action.payload;
         },
-        setSingleJob:(state,actions)=>{
-            state.singleJob = actions.payload;
+        setSingleJob:(state,action)=>{
+            state.singleJob = action.payload;
         }
     }
 });

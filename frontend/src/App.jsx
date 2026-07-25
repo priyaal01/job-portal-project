@@ -8,8 +8,12 @@ import Jobs from './components/Jobs';
 import Notfound from './components/Notfound';
 import Profile from './components/profile/Profile';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Companies from './components/admin/Companies';
+import CompanyCreate from './components/admin/CompanyCreate';
+import CompanySetup from './components/admin/CompanySetup';
 
 const appRouter = createBrowserRouter([
+  // client side 
   {
     path: '/',
     element: <Home />
@@ -46,6 +50,21 @@ const appRouter = createBrowserRouter([
   {
     path:'/profile',
     element:<Profile/>
+  },
+
+  // admin side
+
+   {
+    path:'/admin/company',
+    element:<Companies/>
+  },
+  {
+    path:'/admin/companies/create',
+    element:<CompanyCreate/>
+  },
+  {
+    path:'/admin/company/:id',
+    element:<CompanySetup/>
   }
 
 ]);

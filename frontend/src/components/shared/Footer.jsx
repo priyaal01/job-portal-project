@@ -15,7 +15,7 @@ const Footer = () => {
           {/* Logo & Description */}
           <div>
             <h2 className="text-3xl font-bold text-white">
-              Job<span className="text-green-500">Portal</span>
+              We<span className="text-green-500">Hire</span>
             </h2>
 
             <p className="mt-4 text-sm leading-7 text-gray-400">

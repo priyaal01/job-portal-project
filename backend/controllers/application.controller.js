@@ -48,11 +48,11 @@ export const getApplication = async (req, res) => {
         if (!applications) {
             return res.status(404).json({ message: "No application found" })
         }
-        return res.status(200).json({ message: "Applications fetched successfully", applications })
+        return res.status(200).json({ message: "Applications fetched successfully", applications,success:true})
     }
     catch (error) {
         console.log(error);
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: error.message,success:false});
     }
 };
 
@@ -72,11 +72,11 @@ export const getApplicants = async (req, res) => {
         if (!job) {
             return res.status(404).json({ message: "Job not found" });
         }
-        return res.status(200).json({ message: "Applicants fetched successfully", applicants: job.applications })
+        return res.status(200).json({ message: "Applicants fetched successfully", applicants: job.applications,success:true })
     }
     catch (error) {
         console.log(error);
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: error.message,success:false });
     }
 };
 
@@ -94,10 +94,10 @@ export const updateApplicationStatus = async (req, res) => {
         }
         application.status = status;
         await application.save();
-        return res.status(200).json({ message: "Application status updated successfully", application })
+        return res.status(200).json({ message: "Application status updated successfully", application,success:true })
     }
     catch (error) {
         console.log(error);
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: error.message ,success:false});
     }
 }

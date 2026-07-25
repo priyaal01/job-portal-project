@@ -17,7 +17,6 @@ const ApplicationJobTable = () => {
             <div className='flex items-center gap-2 p-4'>
                 <NotebookTabs size={16} color="#bababa" strokeWidth={1.75} />
                 <h1 className='font-semibold'>Applied Jobs</h1>
-
             </div>
             
             <Table>

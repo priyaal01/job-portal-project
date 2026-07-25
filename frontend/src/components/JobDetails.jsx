@@ -31,12 +31,7 @@ const JobDetails = () => {
         try {
             const res = await axios.post(`${APPLICATION_API_END_POINT}/apply/${jobId}`, null, { withCredentials: true });
             if (res.data.success) {
-                const updateSingleJob = {
-                    ...singleJob,
-                    applications: [...(singleJob?.applications || []), { applicant: user?._id }]
-                }
                 setIsApplied(true);
-                dispatch(setSingleJob(updateSingleJob))
                 toast.success(res.data.message);
             }
         }
