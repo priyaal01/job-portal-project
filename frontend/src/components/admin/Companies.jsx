@@ -9,7 +9,7 @@ import useGetAllCompanies from '@/hooks/useGetAllCompanies'
 import { useDispatch } from 'react-redux'
 import { setSerchCompanyByText } from '@/redux/companySlice'
 
-const companies = () => {
+const Companies = () => {
     useGetAllCompanies();
     const navigate = useNavigate();
     const [input, setInput] = useState("")
@@ -34,4 +34,4 @@ const companies = () => {
     )
 }
 
-export default companies
+export default Companies

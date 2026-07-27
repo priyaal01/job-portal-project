@@ -49,7 +49,7 @@ const JobDetails = () => {
                 console.log(res.data.job.applications)
                 if (res.data.success) {
                     dispatch(setSingleJob(res.data.job))
-                    setIsApplied(res.data.Jon.applications.some(application => application.applicant === user?._id))
+                    setIsApplied(res.data.Job.applications.some(application => application.applicant === user?._id))
                 }
             }
             catch (err) {

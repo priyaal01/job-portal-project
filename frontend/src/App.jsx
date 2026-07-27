@@ -11,6 +11,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Companies from './components/admin/Companies';
 import CompanyCreate from './components/admin/CompanyCreate';
 import CompanySetup from './components/admin/CompanySetup';
+import AdminJobs from './components/admin/AdminJobs';
+import AdminJobSetup from './components/admin/AdminJobSetup';
+import Applicants from './components/admin/Applicants';
 
 const appRouter = createBrowserRouter([
   // client side 
@@ -65,6 +68,18 @@ const appRouter = createBrowserRouter([
   {
     path:'/admin/company/:id',
     element:<CompanySetup/>
+  },
+  {
+    path:'/admin/jobs',
+    element:<AdminJobs/>
+  },
+  {
+    path:'/admin/job/create',
+    element:<AdminJobSetup/>
+  },
+   {
+    path:'/admin/job/:id/applicant',
+    element:<Applicants/>
   }
 
 ]);
