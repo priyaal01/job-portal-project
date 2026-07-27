@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../shared/Navbar";
 import { Briefcase, GraduationCap } from "lucide-react";
 import ApplicationJobTable from "../ApplicationJobTable";
@@ -6,13 +6,38 @@ import ProfileHeader from "./ProfileHeader";
 import AboutSection from "./AboutSection";
 import SkillsSection from "./SkillsSection";
 import EntrySection from "./EntrySection";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { APPLICATION_API_END_POINT } from "@/utils/constant";
+import { toast } from "sonner";
+import { setApplications } from "@/redux/applicationSlice";
 
 const Profile = () => {
-    const { user } = useSelector(store => store.auth)
+    const { user } = useSelector(store => store.auth);
+    const dispatch=useDispatch();
+    useEffect(() => {
+        const fetchAllApplications = async () => {
+            try {
+                const res=await axios.get(`${APPLICATION_API_END_POINT}/applications`,{withCredentials:true});
+                console.log(res.data)
+                if(res.data.success){
+                    toast.success(res.data.message)
+                    dispatch(setApplications(res.data.applications))
+                }
+
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        fetchAllApplications();
+    }, [])
 
     const [coverFile, setCoverFile] = useState(null);
     const [profileFile, setProfileFile] = useState(null);
+
+
+
 
     const profile = {
         name: user?.fullname || "",
@@ -22,10 +47,10 @@ const Profile = () => {
         phone: user?.phonenumber || "",
         about: user?.profile?.about || "",
         skills: user?.profile?.skills || [],
-        profilePhoto:user?.profile?.profilePhoto ||"",
-        coverPhoto:user?.profile?.coverPhoto ||""
+        profilePhoto: user?.profile?.profilePhoto || "",
+        coverPhoto: user?.profile?.coverPhoto || ""
     };
-   
+
     return (
         <div className="min-h-screen bg-slate-50">
             <Navbar />

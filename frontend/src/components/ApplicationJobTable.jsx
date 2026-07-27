@@ -9,9 +9,10 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { NotebookTabs } from 'lucide-react'
+import { useSelector } from 'react-redux'
 
 const ApplicationJobTable = () => {
-    const appliedJobs=[1,2,3,4,5];
+    const {applications} = useSelector(store=>store.application)
     return (
         <div className='w-full bg-white  rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700'>
             <div className='flex items-center gap-2 p-4'>
@@ -23,7 +24,7 @@ const ApplicationJobTable = () => {
                 <TableCaption>A list of your Applied Jobs.</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-[100px]">Date</TableHead>
+                        <TableHead className="w-[200px]">Date</TableHead>
                         <TableHead>Job Role</TableHead>
                         <TableHead>company</TableHead>
                         <TableHead className="text-right">Status</TableHead>
@@ -31,13 +32,13 @@ const ApplicationJobTable = () => {
                 </TableHeader>
                 <TableBody>
                     {
-                        appliedJobs.map((job,index)=>{
+                        applications.map((application)=>{
                             return(
-                                <TableRow key={index}>
-                                    <TableCell className="font-medium">12/12/2023</TableCell>
-                                    <TableCell>Frontend Developer</TableCell>
-                                    <TableCell>Google</TableCell>
-                                    <TableCell className="text-right">Applied</TableCell>
+                                <TableRow key={application?._id}>
+                                    <TableCell className="font-medium" >{application?.createdAt.split("T")[0]}</TableCell>
+                                    <TableCell>{application?.job?.title}</TableCell>
+                                    <TableCell>{application?.job?.company?.name}</TableCell>
+                                    <TableCell className="text-right">{application?.status}</TableCell>
                                 </TableRow>
                             )
                         })

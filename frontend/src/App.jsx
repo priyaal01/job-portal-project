@@ -1,7 +1,6 @@
 import './App.css'
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
-import Browse from './components/Browse';
 import Home from './components/Home';
 import JobDetails from './components/JobDetails';
 import Jobs from './components/Jobs';
@@ -45,10 +44,7 @@ const appRouter = createBrowserRouter([
     path:'/details/:id',
     element:<JobDetails/>
   },
-  {
-    path:'/browse',
-    element:<Browse/>
-  },
+  
 
   {
     path:'/profile',

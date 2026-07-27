@@ -15,13 +15,6 @@ const Job = ({job}) => {
                     <Bookmark strokeWidth={1} className='cursor-pointer' />
                 </div>
                 <h1 className='text-4xl font-semibold ml-5 mt-4 '>{job?.title}</h1>
-                <h3 className='text-sm ml-5 mt-2 text-slate-700'>{job?.description}</h3>
-                <div className=" ml-2 mt-2 p-2 flex gap-2">
-                    <Badge variant="ghost" className='border border-black'>{job?.salary}</Badge>
-                    <Badge variant='ghost' className='border border-black'>{job?.jobtype}</Badge>
-                    <Badge variant='ghost' className='border border-black'>{job?.location}</Badge>
-                </div>
-
             </div>
             <div className='flex items-center justify-between'>
                 <div className='flex items-center gap-2'>

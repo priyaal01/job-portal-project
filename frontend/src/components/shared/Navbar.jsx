@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-import { Avatar, AvatarImage } from '../ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { Button } from '../ui/button'
-import { LogOutIcon, Search, User2 } from 'lucide-react'
+import { LogOutIcon, Search, User, User2 } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import Login from '../auth/Login'
 import SearchDropdown from './SearchDropdown'
@@ -15,6 +15,7 @@ import { setUser } from '@/redux/authSlice'
 
 const Navbar = () => {
     const { user } = useSelector(store => store.auth)
+    const { applications}= useSelector(store=>store.application)
     const [openSearch, setOpenSearch] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -66,7 +67,6 @@ const Navbar = () => {
                                 <ul className='flex font-medium items-center gap-8'>
                                     <Link to={"/"}><li>Home</li></Link>
                                     <Link to={"/jobs"}><li>Jobs</li></Link>
-                                    <Link to={"/browse"}><li>Browse</li></Link>
                                 </ul>
                             </>
                         )
@@ -83,6 +83,9 @@ const Navbar = () => {
                                     <PopoverTrigger asChild>
                                         <Avatar className='cursor-pointer'>
                                             <AvatarImage src={user?.profile?.profilePhoto} alt="shadcn" className="object-cover" />
+                                            <AvatarFallback>
+                                                <User className="w-5 h-5 text-gray-500" />
+                                            </AvatarFallback>
                                         </Avatar>
                                     </PopoverTrigger>
                                     <PopoverContent className="w-80">
@@ -100,16 +103,21 @@ const Navbar = () => {
                                             </div>
 
                                             {/* Stats */}
-                                            <div className="grid grid-cols-2 gap-4 border-y py-3">
-                                                <div>
-                                                    <p className="text-lg font-bold">12</p>
-                                                    <p className="text-xs text-muted-foreground">Applications</p>
-                                                </div>
-                                                <div>
-                                                    <p className="text-lg font-bold">8</p>
-                                                    <p className="text-xs text-muted-foreground">Saved Jobs</p>
-                                                </div>
-                                            </div>
+                                            {
+                                                user && user.role === "student" && (
+                                                    <div className="grid grid-cols-2 gap-4 border-y py-3">
+                                                        <div>
+                                                            <p className="text-lg font-bold">{applications?.length}</p>
+                                                            <p className="text-xs text-muted-foreground">Applications</p>
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-lg font-bold">8</p>
+                                                            <p className="text-xs text-muted-foreground">Saved Jobs</p>
+                                                        </div>
+                                                    </div>
+
+                                                )
+                                            }
 
                                             {/* Actions */}
                                             {
